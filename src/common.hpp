@@ -1,6 +1,7 @@
 #pragma once
 #include <CGUtils/api.hpp>
 #include <CGUtils/model.hpp>
+#include <thread>
 using namespace wzz::gl;
 using namespace wzz::model;
 

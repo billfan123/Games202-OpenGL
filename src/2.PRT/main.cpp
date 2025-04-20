@@ -340,7 +340,7 @@ static void computeVertexSHCoefsNoShadow(const Ray& ray,
                                          const vec3f& coef,
                                          int sh_count,
                                          vec3f* res){
-    if (!isfinite(coef.x) || !isfinite(coef.y) || !isfinite(coef.z)) return;
+    if (!std::isfinite(coef.x) || !std::isfinite(coef.y) || !std::isfinite(coef.z)) return;
     auto table = sh::sh_linear_table<float>();
     for (int i = 0; i < sh_count; i++) {
         res[i] += coef * table[i](ray.d);
@@ -352,7 +352,7 @@ static void computeVertexSHCoefsShadow(const BVHAccel& bvh,
                                        const vec3f& coef,
                                        int sh_count,
                                        vec3f* res){
-    if (!isfinite(coef.x) || !isfinite(coef.y) || !isfinite(coef.z)) return;
+    if (!std::isfinite(coef.x) || !std::isfinite(coef.y) || !std::isfinite(coef.z)) return;
     if (bvh.intersect(ray)) {
         return;
     }
@@ -374,7 +374,7 @@ static void computeVertexSHCoefsInterReflect(const BVHAccel& bvh,
     auto table = sh::sh_linear_table<float>();
     Ray ray = r;
     for(int i = 0; i < max_depth; ++i){
-        if(!isfinite(coef.x) || !isfinite(coef.y) || !isfinite(coef.z)) return;
+        if(!std::isfinite(coef.x) || !std::isfinite(coef.y) || !std::isfinite(coef.z)) return;
 
         Intersection isect;
         if (!bvh.intersect_p(ray, &isect)) {
